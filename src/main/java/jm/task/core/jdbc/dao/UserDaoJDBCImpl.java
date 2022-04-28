@@ -63,8 +63,6 @@ public class UserDaoJDBCImpl implements UserDao {
             /*
             Сначало указываем таблицу в которую будем вносить данные: INSERT INTO [имя-таблицы].
             После используя метод .setString передаем данные.
-
-            p.s. почему ругаеться на INSERT INTO users незнаю, при вызове метода пользователи добавляються.
              */
             preparedStatement = connection.prepareStatement("INSERT INTO users " +
                     "(name, lastName, age)" +
@@ -149,7 +147,6 @@ public class UserDaoJDBCImpl implements UserDao {
         // Установим соединение.
         Connection connection = Util.getBdConnection();
         Statement statement = null;
-        // Создаем таблицу используя Statement и комманды SQL.
         try {
             statement = connection.createStatement();
             // Удаляем все данные коммандой DELETE FROM [имя таблицы]
