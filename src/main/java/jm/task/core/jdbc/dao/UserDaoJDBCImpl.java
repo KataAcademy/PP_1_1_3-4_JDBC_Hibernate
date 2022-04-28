@@ -90,14 +90,8 @@ public class UserDaoJDBCImpl implements UserDao {
         // Установим соединение.
         Connection connection = Util.getBdConnection();
         PreparedStatement preparedStatement = null;
-        // Добавляем данные в таблицу.
         try {
-            /*
-            Сначало указываем таблицу в которую будем вносить данные: INSERT INTO [имя-таблицы].
-            После используя метод .setString передаем данные.
-
-            p.s. почему ругаеться на INSERT INTO users незнаю, при вызове метода пользователи добавляються.
-             */
+            // Удаляем данные коммандой DELETE FROM [имя таблицы] WHERE [предикат]
             preparedStatement = connection.prepareStatement("DELETE FROM users" +
                     " WHERE id = ?");
             preparedStatement.setLong(1, id);
@@ -158,7 +152,7 @@ public class UserDaoJDBCImpl implements UserDao {
         // Создаем таблицу используя Statement и комманды SQL.
         try {
             statement = connection.createStatement();
-            // После комманды CREATE TABLE, указываем условие IF NOT EXISTS.
+            // Удаляем все данные коммандой DELETE FROM [имя таблицы]
             statement.executeUpdate("DELETE FROM users");
 
             if (statement != null) {
