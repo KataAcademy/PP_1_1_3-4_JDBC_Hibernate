@@ -5,11 +5,13 @@ import jm.task.core.jdbc.model.User;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
+
     public UserDaoJDBCImpl() {
 
     }
 
     public void createUsersTable() {
+        String query = "CREATE TABLE IF NOT EXISTS users";
 
     }
 
