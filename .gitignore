@@ -1,0 +1,16 @@
+# JetBrains IDEA
+.idea/
+out/
+*.iml
+*.ipr
+*.iws
+*.ids
+
+# Eclipse
+.settings/
+bin/
+.classpath
+.project
+
+# Maven
+target/
