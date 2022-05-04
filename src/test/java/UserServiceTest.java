@@ -20,7 +20,8 @@ public class UserServiceTest {
             userService.dropUsersTable();
             userService.dropUsersTable();
         } catch (Exception e) {
-            Assert.fail("При тестировании удаления таблицы произошло исключение\n" + e);
+            e.printStackTrace();
+            Assert.fail("При тестировании удаления таблицы произошло исключение: " + e.getMessage());
         }
     }
 
@@ -30,7 +31,8 @@ public class UserServiceTest {
             userService.dropUsersTable();
             userService.createUsersTable();
         } catch (Exception e) {
-            Assert.fail("При тестировании создания таблицы пользователей произошло исключение\n" + e.getMessage());
+            e.printStackTrace();
+            Assert.fail("При тестировании создания таблицы пользователей произошло исключение: " + e.getMessage());
         }
     }
 
@@ -51,7 +53,8 @@ public class UserServiceTest {
             }
 
         } catch (Exception e) {
-            Assert.fail("Во время тестирования сохранения пользователя произошло исключение\n" + e);
+            e.printStackTrace();
+            Assert.fail("Во время тестирования сохранения пользователя произошло исключение: " + e.getMessage());
         }
     }
 
@@ -63,7 +66,8 @@ public class UserServiceTest {
             userService.saveUser(testName, testLastName, testAge);
             userService.removeUserById(1L);
         } catch (Exception e) {
-            Assert.fail("При тестировании удаления пользователя по id произошло исключение\n" + e);
+            e.printStackTrace();
+            Assert.fail("При тестировании удаления пользователя по id произошло исключение: " + e.getMessage());
         }
     }
 
@@ -79,7 +83,8 @@ public class UserServiceTest {
                 Assert.fail("Проверьте корректность работы метода сохранения пользователя/удаления или создания таблицы");
             }
         } catch (Exception e) {
-            Assert.fail("При попытке достать всех пользователей из базы данных произошло исключение\n" + e);
+            e.printStackTrace();
+            Assert.fail("При попытке достать всех пользователей из базы данных произошло исключение: " + e.getMessage());
         }
     }
 
@@ -95,7 +100,8 @@ public class UserServiceTest {
                 Assert.fail("Метод очищения таблицы пользователей реализован не корректно");
             }
         } catch (Exception e) {
-            Assert.fail("При тестировании очистки таблицы пользователей произошло исключение\n" + e);
+            e.printStackTrace();
+            Assert.fail("При тестировании очистки таблицы пользователей произошло исключение: " + e.getMessage());
         }
     }
 
