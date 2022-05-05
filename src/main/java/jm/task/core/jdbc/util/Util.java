@@ -10,6 +10,6 @@ public class Util {
     private static final String PASSWORD = "Password";
 
     public static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection(String.format("%s?user=%s&password=%s", URL, USER, PASSWORD));
+        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }
