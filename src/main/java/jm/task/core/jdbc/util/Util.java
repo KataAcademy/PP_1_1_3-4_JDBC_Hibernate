@@ -1,10 +1,21 @@
 package jm.task.core.jdbc.util;
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionBuilder;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
+import org.hibernate.service.ServiceRegistry;
+
+//import java.lang.module.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
-public class Util {
+public class Util<sessione> {
     /*
     Создадим объект Connection
     Создадим переменные для данных нашей БД созданной в mySQL Workbench.
@@ -35,6 +46,9 @@ public class Util {
     // Пароль пользователя
     private static final String dbPass = "172440";
 
+    // Собираем URL нашей базы
+    private static final String dbURL ="jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
+
     /*
     Метод getBdConnection() которым мы будем устанавливать соединение может выбросить исключения:
     - ClassNotFoundException в случае отсутствия драйвера JDBC;
@@ -47,8 +61,6 @@ public class Util {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        // Собираем URL нашей базы
-        String dbURL ="jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName;
         // Создаем наше подключение и не забываем про возможное SQLException.
         try {
             bdConnection = DriverManager.getConnection(dbURL, dbUser, dbPass);
@@ -58,4 +70,28 @@ public class Util {
         return bdConnection;
     }
 
+
+    public static SessionFactory getSessionFactory() throws HibernateException {
+        Configuration configuration = new Configuration();
+        ServiceRegistry serviceRegistry = null;
+
+        try {
+            configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+            configuration.setProperty("hibernate.connection.url", dbURL);
+            configuration.setProperty("hibernate.connection.username", dbUser);
+            configuration.setProperty("hibernate.connection.password", dbPass);
+            configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+            configuration.setProperty("hibernate.show_sql", "true");
+            configuration.setProperty("hibernate.current_session_context_class", "thread");
+            configuration.addAnnotatedClass(User.class);
+
+            serviceRegistry = new StandardServiceRegistryBuilder()
+                    .applySettings(configuration.getProperties())
+                    .build();
+        } catch(HibernateException exception){
+            System.out.println("----------------> Problem creating session factory <----------------");
+            exception.printStackTrace();
+        }
+        return configuration.buildSessionFactory(serviceRegistry);
+    }
 }
