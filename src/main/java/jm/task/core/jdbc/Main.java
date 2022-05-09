@@ -12,18 +12,18 @@ public class Main {
         // Создаем экземпляр класса где мы описали все наши методы
         UserServiceImpl userService = new UserServiceImpl();
         // Создание таблицы для User(ов) – не должно приводить к исключению, если такая таблица уже существует
-//        userService.createUsersTable();
+        userService.createUsersTable();
         // Добавление User в таблицу
-//        userService.saveUser("Name1", "LastName1", (byte) 20);
-//        userService.saveUser("Name2", "LastName2", (byte) 25);
-//        userService.saveUser("Name3", "LastName3", (byte) 31);
-//        userService.saveUser("Name4", "LastName4", (byte) 38);
+        userService.saveUser("Name1", "LastName1", (byte) 20);
+        userService.saveUser("Name2", "LastName2", (byte) 25);
+        userService.saveUser("Name3", "LastName3", (byte) 31);
+        userService.saveUser("Name4", "LastName4", (byte) 38);
         // Удаление User из таблицы ( по id )
-//        userService.removeUserById(1);
+        userService.removeUserById(53);
         // Получение всех User(ов) из таблицы
-//        userService.getAllUsers();
+        userService.getAllUsers();
         // Очистка содержания таблицы
-//        userService.cleanUsersTable();
+        userService.cleanUsersTable();
         // Удаление таблицы User(ов) – не должно приводить к исключению, если таблицы не существует
         userService.dropUsersTable();
     }

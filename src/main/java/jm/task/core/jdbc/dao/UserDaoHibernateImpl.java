@@ -3,6 +3,7 @@ package jm.task.core.jdbc.dao;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void createUsersTable() {
         session.beginTransaction();
-        session.createSQLQuery("CREATE TABLE IF NOT EXISTS user" +
+        session.createSQLQuery("CREATE TABLE IF NOT EXISTS users" +
                 "(id BIGINT PRIMARY KEY AUTO_INCREMENT," +
                 "name VARCHAR (10)," +
                 "lastName VARCHAR (20)," +
@@ -32,16 +33,14 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void dropUsersTable() {
         session.beginTransaction();
-        session.createSQLQuery("DROP TABLE IF EXISTS user");
+        session.createSQLQuery("DROP TABLE IF EXISTS users").addEntity(User.class);
         session.getTransaction().commit();
-
     }
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        User user = new User(name, lastName, age);
         session.beginTransaction();
-        session.save(user);
+        session.save(new User(name, lastName, age));
         session.getTransaction().commit();
     }
 
@@ -54,7 +53,8 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> userList = session.createSQLQuery("SELECT * FROM store.user").list();
+        List<User> userList = session.createQuery("from User").getResultList();
+        System.out.println("All users -> {" + userList + "}");
         return userList;
     }
 

@@ -72,6 +72,7 @@ public class Util<sessione> {
 
 
     public static SessionFactory getSessionFactory() throws HibernateException {
+        // Создадим объект Configuration для настройки нашего подключения
         Configuration configuration = new Configuration();
         ServiceRegistry serviceRegistry = null;
 
