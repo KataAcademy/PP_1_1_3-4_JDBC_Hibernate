@@ -19,7 +19,7 @@ public class Main {
         userService.saveUser("Name3", "LastName3", (byte) 31);
         userService.saveUser("Name4", "LastName4", (byte) 38);
         // Удаление User из таблицы ( по id )
-        userService.removeUserById(53);
+        userService.removeUserById(1);
         // Получение всех User(ов) из таблицы
         userService.getAllUsers();
         // Очистка содержания таблицы

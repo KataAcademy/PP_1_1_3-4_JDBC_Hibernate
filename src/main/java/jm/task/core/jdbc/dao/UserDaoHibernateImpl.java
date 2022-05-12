@@ -2,6 +2,7 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -22,7 +23,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void createUsersTable() {
         session.beginTransaction();
-        session.createSQLQuery("CREATE TABLE IF NOT EXISTS users" +
+        session.createSQLQuery("CREATE TABLE IF NOT EXISTS user" +
                 "(id BIGINT PRIMARY KEY AUTO_INCREMENT," +
                 "name VARCHAR (10)," +
                 "lastName VARCHAR (20)," +
@@ -33,7 +34,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void dropUsersTable() {
         session.beginTransaction();
-        session.createSQLQuery("DROP TABLE IF EXISTS users").addEntity(User.class);
+        session.createSQLQuery("DROP TABLE IF EXISTS user").executeUpdate();
         session.getTransaction().commit();
     }
 
