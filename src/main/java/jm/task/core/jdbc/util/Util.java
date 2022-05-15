@@ -13,7 +13,7 @@ public class Util {
 
     // Создадим объект Connection
 
-    static Connection bdConnection;
+    private static Connection bdConnection;
 
     /*
     Все данные берем из нашей БД которые можно посмотреть во вкладке Session окна Information
