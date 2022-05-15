@@ -2,29 +2,19 @@ package jm.task.core.jdbc.util;
 
 import jm.task.core.jdbc.model.User;
 import org.hibernate.HibernateException;
-import org.hibernate.SessionBuilder;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-//import java.lang.module.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
-public class Util<sessione> {
-    /*
-    Создадим объект Connection
-    Создадим переменные для данных нашей БД созданной в mySQL Workbench.
-    После создаем метод getBdConnection() для подключения к нашей БД.
-    */
+public class Util {
 
     // Создадим объект Connection
-
-    static Connection bdConnection;
+    private static Connection bdConnection;
 
     /*
     Все данные берем из нашей БД которые можно посмотреть во вкладке Session окна Information
@@ -70,8 +60,7 @@ public class Util<sessione> {
         return bdConnection;
     }
 
-
-    public static SessionFactory getSessionFactory() throws HibernateException {
+    public static SessionFactory getSessionFactory() {
         // Создадим объект Configuration для настройки нашего подключения
         Configuration configuration = new Configuration();
         ServiceRegistry serviceRegistry = null;
@@ -89,9 +78,8 @@ public class Util<sessione> {
             serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties())
                     .build();
-        } catch(HibernateException exception){
-            System.out.println("----------------> Problem creating session factory <----------------");
-            exception.printStackTrace();
+        } catch(HibernateException ex){
+            ex.printStackTrace();
         }
         return configuration.buildSessionFactory(serviceRegistry);
     }

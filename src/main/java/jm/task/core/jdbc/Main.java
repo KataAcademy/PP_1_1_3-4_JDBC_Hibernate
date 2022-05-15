@@ -1,7 +1,6 @@
 package jm.task.core.jdbc;
 
-import jm.task.core.jdbc.dao.UserDao;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
 
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         // Создаем экземпляр класса где мы описали все наши методы
-        UserServiceImpl userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         // Создание таблицы для User(ов) – не должно приводить к исключению, если такая таблица уже существует
         userService.createUsersTable();
         // Добавление User в таблицу
