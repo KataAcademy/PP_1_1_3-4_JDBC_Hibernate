@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b00df57-eda3-4581-8048-09aaba027c26" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/832c7ce4-a87b-4a37-b3a0-8af88b310f91/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/832c7ce4-a87b-4a37-b3a0-8af88b310f91/storage_v2/_src_/schema/information_schema.FNRwLQ.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/832c7ce4-a87b-4a37-b3a0-8af88b310f91/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/832c7ce4-a87b-4a37-b3a0-8af88b310f91/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/832c7ce4-a87b-4a37-b3a0-8af88b310f91/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="0b00df57-eda3-4581-8048-09aaba027c26" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,6 +67,19 @@
       <option name="MAIN_CLASS_NAME" value="UserServiceTest" />
       <option name="METHOD_NAME" value="saveUser" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="PP_1_1_3-4_JDBC_Hibernate" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="PP_1_1_3-4_JDBC_Hibernate" />
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
