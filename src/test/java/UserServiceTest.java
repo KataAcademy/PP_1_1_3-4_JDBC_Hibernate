@@ -55,7 +55,7 @@ public class UserServiceTest {
         }
     }
 
-    @Test
+//    @Test
     public void removeUserById() {
         try {
             userService.dropUsersTable();
