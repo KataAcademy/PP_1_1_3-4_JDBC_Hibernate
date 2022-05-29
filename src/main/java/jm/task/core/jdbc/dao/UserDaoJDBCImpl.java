@@ -1,7 +1,9 @@
 package jm.task.core.jdbc.dao;
 
+import jm.task.core.jdbc.exception.DaoException;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,16 +11,16 @@ import java.util.List;
 public class UserDaoJDBCImpl implements UserDao {
 
     private static final String CREATE_TABLE_SQL = """
-            CREATE TABLE IF NOT EXISTS user (
+            CREATE TABLE if NOT EXISTS USER (
                 id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                name VARCHAR(32) NOT NULL,
-                last_name varchar(32) NOT NULL,
+                NAME VARCHAR(32) NOT NULL,
+                last_name VARCHAR(32) NOT NULL,
                 age TINYINT NOT NULL
             );
             """;
 
     private static final String DROP_TABLE_SQL = """
-            DROP TABLE IF EXISTS user;
+            DROP TABLE if EXISTS USER;
             """;
 
     private static final String FIND_ALL_SQL = """
@@ -45,12 +47,13 @@ public class UserDaoJDBCImpl implements UserDao {
             TRUNCATE user
             """;
 
+    private static final Connection connection = Util.open();
+
     public UserDaoJDBCImpl() {
     }
 
     public void createUsersTable() {
-        try (var connection = Util.open();
-             var statement = connection.createStatement()) {
+        try (var statement = connection.createStatement()) {
             statement.executeUpdate(CREATE_TABLE_SQL);
         } catch (SQLException throwables) {
             throw new DaoException(throwables);
@@ -58,8 +61,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        try (var connection = Util.open();
-             var statement = connection.createStatement()) {
+        try (var statement = connection.createStatement()) {
             statement.executeUpdate(DROP_TABLE_SQL);
         } catch (SQLException throwables) {
             throw new DaoException(throwables);
@@ -67,8 +69,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        try (var connection = Util.open();
-             var preparedStatement = connection.prepareStatement(SAVE_SQL)) {
+        try (var preparedStatement = connection.prepareStatement(SAVE_SQL)) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
@@ -81,8 +82,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        try (var connection = Util.open();
-             var preparedStatement = connection.prepareStatement(DELETE_BY_ID_SQL)) {
+        try (var preparedStatement = connection.prepareStatement(DELETE_BY_ID_SQL)) {
             preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
@@ -92,8 +92,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        try (var connection = Util.open();
-             var preparedStatement = connection.prepareStatement(FIND_ALL_SQL)) {
+        try (var preparedStatement = connection.prepareStatement(FIND_ALL_SQL)) {
             var resultSet = preparedStatement.executeQuery();
             List<User> users = new ArrayList<>();
             while (resultSet.next()) {
@@ -110,20 +109,10 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        try (var connection = Util.open();
-             var preparedStatement = connection.prepareStatement(CLEAR_TABLE_SQL)) {
+        try (var preparedStatement = connection.prepareStatement(CLEAR_TABLE_SQL)) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
-    // custom exception
-    public static class DaoException extends RuntimeException {
-        public DaoException(Throwable throwable) {
-            super(throwable);
-        }
-    }
 }
-
-

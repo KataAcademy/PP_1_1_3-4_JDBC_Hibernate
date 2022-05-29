@@ -9,10 +9,6 @@ public class Util {
     private static final String PASSWORD_KEY = "root";
     private static final String URL_KEY = "jdbc:mysql://localhost:3306/database1";
 
-    static {
-        loadDriver();
-    }
-
     private Util() {
     }
 
@@ -24,14 +20,6 @@ public class Util {
                     PASSWORD_KEY
             );
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static void loadDriver() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
