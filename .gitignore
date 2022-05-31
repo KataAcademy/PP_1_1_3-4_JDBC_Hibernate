@@ -7,31 +7,31 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.idea
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
+src/test/.idea
+src/test/.idea/**/workspace.xml
+src/test/.idea/**/tasks.xml
+src/test/.idea/**/usage.statistics.xml
+src/test/.idea/**/dictionaries
+src/test/.idea/**/shelf
 
 # AWS User-specific
-.idea/**/aws.xml
+src/test/.idea/**/aws.xml
 
 # Generated files
-.idea/**/contentModel.xml
+src/test/.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
+src/test/.idea/**/dataSources/
+src/test/.idea/**/dataSources.ids
+src/test/.idea/**/dataSources.local.xml
+src/test/.idea/**/sqlDataSources.xml
+src/test/.idea/**/dynamic.xml
+src/test/.idea/**/uiDesigner.xml
+src/test/.idea/**/dbnavigator.xml
 
 # Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
+src/test/.idea/**/gradle.xml
+src/test/.idea/**/libraries
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -50,7 +50,7 @@
 cmake-build-*/
 
 # Mongo Explorer plugin
-.idea/**/mongoSettings.xml
+src/test/.idea/**/mongoSettings.xml
 
 # File-based project format
 *.iws
@@ -65,10 +65,10 @@ out/
 atlassian-ide-plugin.xml
 
 # Cursive Clojure plugin
-.idea/replstate.xml
+src/test/.idea/replstate.xml
 
 # SonarLint plugin
-.idea/sonarlint/
+src/test/.idea/sonarlint/
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
@@ -77,10 +77,10 @@ crashlytics-build.properties
 fabric.properties
 
 # Editor-based Rest Client
-.idea/httpRequests
+src/test/.idea/httpRequests
 
 # Android studio 3.1+ serialized cache file
-.idea/caches/build_file_checksums.ser
+src/test/.idea/caches/build_file_checksums.ser
 
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
@@ -92,29 +92,29 @@ fabric.properties
 
 # Sonarlint plugin
 # https://plugins.jetbrains.com/plugin/7973-sonarlint
-.idea/**/sonarlint/
+src/test/.idea/**/sonarlint/
 
 # SonarQube Plugin
 # https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin
-.idea/**/sonarIssues.xml
+src/test/.idea/**/sonarIssues.xml
 
 # Markdown Navigator plugin
 # https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced
-.idea/**/markdown-navigator.xml
-.idea/**/markdown-navigator-enh.xml
-.idea/**/markdown-navigator/
+src/test/.idea/**/markdown-navigator.xml
+src/test/.idea/**/markdown-navigator-enh.xml
+src/test/.idea/**/markdown-navigator/
 
 # Cache file creation bug
 # See https://youtrack.jetbrains.com/issue/JBR-2257
-.idea/$CACHE_FILE$
+src/test/.idea/$CACHE_FILE$
 
 # CodeStream plugin
 # https://plugins.jetbrains.com/plugin/12206-codestream
-.idea/codestream.xml
+src/test/.idea/codestream.xml
 
 # Azure Toolkit for IntelliJ plugin
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
-.idea/**/azureSettings.xml
+src/test/.idea/**/azureSettings.xml
 
 ### Java ###
 # Compiled class file

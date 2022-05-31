@@ -1,8 +1,13 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.exception.DaoException;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.Hibernate;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -16,11 +21,10 @@ public class Main {
         var user3 = new User("Оби-Ван", "Кеноби", (byte) 38);
         var user4 = new User("Падме", "Амидала", (byte) 24);
 
-        Connection connection = null;
+        Transaction transaction = null;
 
-        try {
-            connection = Util.open();
-            connection.setAutoCommit(false);
+        try (var session = Util.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
 
             userService.createUsersTable();
 
@@ -35,15 +39,10 @@ public class Main {
 
             userService.dropUsersTable();
 
-            connection.commit();
-        } catch (Exception e) {
-            if (connection != null) {
-                connection.rollback();
-            }
-            throw e;
-        } finally {
-            if (connection != null) {
-                connection.close();
+            transaction.commit();
+        } catch (Exception throwables) {
+            if (transaction != null) {
+                transaction.rollback();
             }
         }
     }

@@ -11,16 +11,16 @@ import java.util.List;
 public class UserDaoJDBCImpl implements UserDao {
 
     private static final String CREATE_TABLE_SQL = """
-            CREATE TABLE if NOT EXISTS USER (
+            CREATE TABLE if NOT EXISTS users (
                 id BIGINT PRIMARY KEY AUTO_INCREMENT,
-                NAME VARCHAR(32) NOT NULL,
+                name VARCHAR(32) NOT NULL,
                 last_name VARCHAR(32) NOT NULL,
                 age TINYINT NOT NULL
             );
             """;
 
     private static final String DROP_TABLE_SQL = """
-            DROP TABLE if EXISTS USER;
+            DROP TABLE if EXISTS users;
             """;
 
     private static final String FIND_ALL_SQL = """
