@@ -42,14 +42,14 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() throws SQLException {
         List<User> userList = new ArrayList<>();
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery("SELECT * FROM users");
-        while (result.next()) {
+        var pstm = connection.prepareStatement("SELECT * FROM users");
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()) {
             User u = new User();
-            u.setId(result.getLong("id"));
-            u.setName(result.getString("name"));
-            u.setLastName(result.getString("lastName"));
-            u.setAge(result.getByte("age"));
+            u.setId(resultSet.getLong("id"));
+            u.setName(resultSet.getString("name"));
+            u.setLastName(resultSet.getString("lastName"));
+            u.setAge(resultSet.getByte("age"));
             userList.add(u);
         }
         return userList;
