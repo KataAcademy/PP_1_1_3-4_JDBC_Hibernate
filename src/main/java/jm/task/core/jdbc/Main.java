@@ -12,9 +12,9 @@ public class Main {
 //         реализуйте алгоритм здесь
         UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
         userDaoJDBC.createUsersTable();
-        userDaoJDBC.saveUser("ex"," n", (byte) 1);
-        userDaoJDBC.saveUser("al"," sn", (byte) 12);
-        userDaoJDBC.saveUser("a"," ds", (byte) 113);
+        userDaoJDBC.saveUser("почему"," эти ", (byte) 1);
+        userDaoJDBC.saveUser("гребанные"," тесты", (byte) 2);
+        userDaoJDBC.saveUser("не"," проходятся", (byte) 3);
 //        userDaoJDBC.dropUsersTable();
 //        userDaoJDBC.cleanUsersTable();
         
