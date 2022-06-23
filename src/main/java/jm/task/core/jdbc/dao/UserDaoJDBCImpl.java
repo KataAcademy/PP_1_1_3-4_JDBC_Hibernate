@@ -50,10 +50,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> usersList = new ArrayList<>();
-//        String SQL = "SELECT * FROM `mydb`.`users`";
-
         try (Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from users");
+            ResultSet resultSet = statement.executeQuery("select * from mydb.users");
             while (resultSet.next()) {
                 User user = new User();
                 user.setAge(resultSet.getByte("age"));
@@ -63,14 +61,13 @@ public class UserDaoJDBCImpl implements UserDao {
 
                 usersList.add(user);
             }
-            return usersList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+            return usersList;
 
+    }
 
-}
 
     public void cleanUsersTable() {
         try(Statement statement = connection.createStatement()) {

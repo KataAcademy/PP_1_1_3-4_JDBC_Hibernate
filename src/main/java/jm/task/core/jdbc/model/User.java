@@ -24,7 +24,12 @@ public class User {
 
     @Override
     public String toString() {
-        return " user -" + name + "\n" + lastName + "\n" + age ;
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 
     public User(String name, String lastName, Byte age) {
