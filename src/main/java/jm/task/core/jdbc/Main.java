@@ -15,8 +15,9 @@ public class Main {
         userDaoJDBC.saveUser("почему"," эти ", (byte) 1);
         userDaoJDBC.saveUser("гребанные"," тесты", (byte) 2);
         userDaoJDBC.saveUser("не"," проходятся", (byte) 3);
-//        userDaoJDBC.dropUsersTable();
 //        userDaoJDBC.cleanUsersTable();
+//        userDaoJDBC.dropUsersTable();
+
         
         userDaoJDBC.getAllUsers().forEach(System.out::println);
 
