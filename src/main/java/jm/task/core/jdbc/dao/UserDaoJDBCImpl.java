@@ -36,7 +36,7 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3,age);
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -49,24 +49,28 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public List<User> getAllUsers() {
-        List<User> users = new ArrayList<>();
-        try(PreparedStatement preparedStatement = connection.prepareStatement("select * from users")) {
-           try( ResultSet resultSet = preparedStatement.executeQuery()) {
-               while (resultSet.next()) {
-                   String name = resultSet.getString("name");
-                   String lastName = resultSet.getString("lastName");
-                   byte age = resultSet.getByte("age");
-                   long id = resultSet.getLong("id");
-                   User user = new User(id, age, name, lastName);
-                   users.add(user);
-               }
-           }
+        List<User> usersList = new ArrayList<>();
+//        String SQL = "SELECT * FROM `mydb`.`users`";
 
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("select * from users");
+            while (resultSet.next()) {
+                User user = new User();
+                user.setAge(resultSet.getByte("age"));
+                user.setId(resultSet.getLong("id"));
+                user.setName(resultSet.getString("name"));
+                user.setLastName(resultSet.getString("lastName"));
+
+                usersList.add(user);
+            }
+            return usersList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return users;
-    }
+        return null;
+
+
+}
 
     public void cleanUsersTable() {
         try(Statement statement = connection.createStatement()) {
