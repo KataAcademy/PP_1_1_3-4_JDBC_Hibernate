@@ -17,9 +17,9 @@ public class UserServiceImpl implements UserService {
 
     // [!]
     // Первое решение не проверено, поэтому есть метод для замены dao
-    public void setHIBERNATEImplDao() {
-        this.dao = new UserDaoHibernateImpl();
-    }
+//    public void setHIBERNATEImplDao() {
+//        this.dao = new UserDaoHibernateImpl();
+//    }
 
     public void createUsersTable() {
         dao.createUsersTable();

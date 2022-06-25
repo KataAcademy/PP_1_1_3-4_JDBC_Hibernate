@@ -1,5 +1,6 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 
 import java.sql.Connection;
@@ -12,14 +13,16 @@ public class Main {
 //         реализуйте алгоритм здесь
         UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
         userDaoJDBC.createUsersTable();
-        userDaoJDBC.saveUser("почему"," эти ", (byte) 1);
-        userDaoJDBC.saveUser("гребанные"," тесты", (byte) 2);
-        userDaoJDBC.saveUser("не"," проходятся", (byte) 3);
-//        userDaoJDBC.cleanUsersTable();
+//        userDaoJDBC.saveUser("alex","bolduin", (byte) 1);
+//        userDaoJDBC.saveUser("tony","stark", (byte) 2);
+//        userDaoJDBC.saveUser("pen"," penis", (byte) 3);
+////        userDaoJDBC.cleanUsersTable();
 //        userDaoJDBC.dropUsersTable();
-
-        
-        userDaoJDBC.getAllUsers().forEach(System.out::println);
+//
+//
+//        userDaoJDBC.getAllUsers().forEach(System.out::println);
+        UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl();
+        userDaoHibernate.saveUser("Milk","Milkovich", (byte)46);
 
 
 

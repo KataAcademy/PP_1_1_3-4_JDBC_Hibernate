@@ -1,24 +1,25 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Table
+@Entity
+@Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name = "lastName")
     private String lastName;
 
-    @Column
+    @Column(name = "age")
     private Byte age;
 
-    public User() {
+    public User() { // когда работаем с сущностями, обязательно должен быть конструктор по умолчанию
 
     }
 
