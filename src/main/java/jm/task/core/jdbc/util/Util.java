@@ -17,9 +17,7 @@ public class Util {
                                                 String userName, String password) throws SQLException,
             ClassNotFoundException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-
         String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
-
         return DriverManager.getConnection(connectionURL, userName,
                 password);
     }
