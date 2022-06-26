@@ -2,11 +2,11 @@ package jm.task.core.jdbc.model;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "users")
+@Entity // объект данного класса является сущностью и его можно гонять от бд до приложения
+@Table(name = "users") // указывает, что хотим хранить именнно в этой таблице
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // первичнчй ключ
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // база данных сама генерирует айдишник
     @Column(name = "id")
     private Long id;
 

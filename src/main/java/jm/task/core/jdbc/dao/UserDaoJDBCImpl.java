@@ -23,7 +23,6 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-
         try (Statement statement = connection.createStatement()) {
             statement.execute("drop table mydb.users");
 

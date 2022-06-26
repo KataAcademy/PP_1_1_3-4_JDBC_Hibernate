@@ -34,26 +34,23 @@ public class Util {
 
     public static SessionFactory getSession() {
         if (sessionFactory == null) {
-            try {
                 Configuration configuration = new Configuration();
-//
+// настройки, вместо xml
                 Properties properties = new Properties();
                 properties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
                 properties.put(Environment.URL, URL);
                 properties.put(Environment.USER, USERNAME);
                 properties.put(Environment.PASS, PASSWORD);
+
                 properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
                 properties.put(Environment.SHOW_SQL, "true");
                 properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                properties.put(Environment.HBM2DDL_AUTO, "create");
+                properties.put(Environment.HBM2DDL_AUTO, "update");
                 configuration.setProperties(properties);
                 configuration.addAnnotatedClass(User.class);
 //                StandardServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 //                        .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 //            properties.setProperty("hibernate.connection.url", URL);
 //            properties.setProperty("hibernate.connection.username", USERNAME);
 //            properties.setProperty("hibernate.connection.password", PASSWORD);
