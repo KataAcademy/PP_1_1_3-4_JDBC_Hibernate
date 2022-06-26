@@ -13,12 +13,12 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-        String CREATE_TABLE_SQL = "create table if not exists USERS " + "(" +
-                "id int not null AUTO_INCREMENT, " +
-                "name varchar(30) not null, " +
-                "lastname varchar(50) not null, " +
-                "age int, primary key (id)" + ")";
         try (Connection connection = Util.getMySQLConnection()) {
+            String CREATE_TABLE_SQL = "create table if not exists USERS " + "(" +
+                    "id int not null AUTO_INCREMENT, " +
+                    "name varchar(30) not null, " +
+                    "lastname varchar(50) not null, " +
+                    "age int, primary key (id)" + ")";
             Statement statement = connection.createStatement();
             statement.executeUpdate(CREATE_TABLE_SQL);
         } catch (SQLException | ClassNotFoundException e) {
@@ -27,9 +27,9 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        String DROP_TABLE = "drop table if exists USERS";
         try (Connection connection = Util.getMySQLConnection()) {
             Statement statement = connection.createStatement();
+            String DROP_TABLE = "drop table if exists USERS";
             statement.executeUpdate(DROP_TABLE);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -37,18 +37,22 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        String INSERT_USER_DATA = "insert into USERS(name, lastname, age) VALUES ('" + name + "','" + lastName + "'," + age + ")";
         try (Connection connection = Util.getMySQLConnection()) {
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(INSERT_USER_DATA);
+            String INSERT_USER_DATA = "insert into USERS(name, lastname, age) VALUES (?, ?, ?)";
+            PreparedStatement stm = connection.prepareStatement(INSERT_USER_DATA);
+            stm.setString(1, name);
+            stm.setString(2, lastName);
+            stm.setByte(3, age);
+            stm.executeUpdate();
+            System.out.println("User с именем – " + name + " добавлен в базу данных");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
 
     public void removeUserById(long id) {
-        String DELETE_USER = "delete from USERS where id = " + id;
         try (Connection connection = Util.getMySQLConnection()) {
+            String DELETE_USER = "delete from USERS where id = " + id;
             Statement statement = connection.createStatement();
             statement.executeUpdate(DELETE_USER);
         } catch (SQLException | ClassNotFoundException e) {
@@ -58,8 +62,8 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        String SELECT_ALL_USERS = "select * from USERS";
         try (Connection connection = Util.getMySQLConnection()) {
+            String SELECT_ALL_USERS = "select * from USERS";
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -75,8 +79,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        String TRUNCATE_TABLE = "TRUNCATE TABLE kata.USERS";
         try (Connection connection = Util.getMySQLConnection()) {
+            String TRUNCATE_TABLE = "TRUNCATE TABLE kata.USERS";
             Statement statement = connection.createStatement();
             statement.executeUpdate(TRUNCATE_TABLE);
         } catch (SQLException | ClassNotFoundException e) {
