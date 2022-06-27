@@ -21,7 +21,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     "age int, primary key (id)" + ")";
             Statement statement = connection.createStatement();
             statement.executeUpdate(CREATE_TABLE_SQL);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -31,7 +31,7 @@ public class UserDaoJDBCImpl implements UserDao {
             Statement statement = connection.createStatement();
             String DROP_TABLE = "drop table if exists USERS";
             statement.executeUpdate(DROP_TABLE);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -45,7 +45,7 @@ public class UserDaoJDBCImpl implements UserDao {
             stm.setByte(3, age);
             stm.executeUpdate();
             System.out.println("User с именем – " + name + " добавлен в базу данных");
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -55,7 +55,7 @@ public class UserDaoJDBCImpl implements UserDao {
             String DELETE_USER = "delete from USERS where id = " + id;
             Statement statement = connection.createStatement();
             statement.executeUpdate(DELETE_USER);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -72,7 +72,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 Byte age = resultSet.getByte("age");
                 users.add(new User(name, lastName, age));
             }
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return users;
@@ -83,7 +83,7 @@ public class UserDaoJDBCImpl implements UserDao {
             String TRUNCATE_TABLE = "TRUNCATE TABLE kata.USERS";
             Statement statement = connection.createStatement();
             statement.executeUpdate(TRUNCATE_TABLE);
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
