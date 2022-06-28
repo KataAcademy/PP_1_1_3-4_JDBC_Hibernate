@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class Util {
     private static Util util;
-    private Connection connection;
+    private final Connection connection;
 
-    private Connection UtilConnection() throws SQLException {
+    private Util() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String userName = "root";
@@ -17,14 +17,13 @@ public class Util {
             String hostName = "localhost";
             String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
             this.connection = DriverManager.getConnection(connectionURL, userName, password);
-        } catch (ClassNotFoundException ex) {
-            System.out.println("Database Connection Creation Failed : " + ex.getMessage());
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
-        return connection;
     }
 
-    public Connection getConnection() throws SQLException {
-        return UtilConnection();
+    public Connection getConnection() {
+        return connection;
     }
 
     public static Util getInstance() throws SQLException {
