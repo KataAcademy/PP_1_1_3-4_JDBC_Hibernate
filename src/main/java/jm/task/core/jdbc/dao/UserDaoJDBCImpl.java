@@ -110,10 +110,13 @@ public class UserDaoJDBCImpl implements UserDao {
     public void cleanUsersTable() {
         try {
             connection = Util.getInstance().getConnection();
+            connection.setAutoCommit(false);
             String TRUNCATE_TABLE = "TRUNCATE TABLE kata.USERS";
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(TRUNCATE_TABLE);
-            statement.close();
+            try (Statement statement = connection.createStatement()) {
+                statement.executeUpdate(TRUNCATE_TABLE);
+            }
+            connection.commit();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
