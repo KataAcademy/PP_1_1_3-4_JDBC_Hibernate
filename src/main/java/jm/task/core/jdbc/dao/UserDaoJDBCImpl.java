@@ -14,25 +14,31 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
-    public void createUsersTable() {
+    public void createUsersTable() throws SQLException {
         String CREATE_TABLE_SQL = "create table if not exists USERS " + "(" +
                 "id int not null AUTO_INCREMENT, " +
                 "name varchar(30) not null, " +
                 "lastname varchar(50) not null, " +
                 "age int, primary key (id)" + ")";
         try (Statement statement = connection.createStatement()) {
+            connection.setAutoCommit(false);
             statement.executeUpdate(CREATE_TABLE_SQL);
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            connection.rollback();
         }
     }
 
-    public void dropUsersTable() {
+    public void dropUsersTable() throws SQLException {
         String DROP_TABLE = "drop table if exists USERS";
         try (Statement statement = connection.createStatement()) {
+            connection.setAutoCommit(false);
             statement.executeUpdate(DROP_TABLE);
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            connection.rollback();
         }
     }
 
@@ -49,8 +55,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
             connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
         }
     }
 
@@ -63,8 +67,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
             connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
         }
     }
 
@@ -96,8 +98,6 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
             connection.rollback();
-        } finally {
-            connection.setAutoCommit(true);
         }
     }
 }
