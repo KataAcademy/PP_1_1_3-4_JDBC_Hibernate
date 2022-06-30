@@ -1,25 +1,36 @@
 package jm.task.core.jdbc.model;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@Table
+@Entity // объект данного класса является сущностью и его можно гонять от бд до приложения
+@Table(name = "users") // указывает, что хотим хранить именнно в этой таблице
 public class User {
-    @Id
+    @Id // первичнчй ключ
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // база данных сама генерирует айдишник
+    @Column(name = "id")
     private Long id;
 
-    @Column
+    @Column(name = "name")
     private String name;
 
-    @Column
+    @Column(name = "lastName")
     private String lastName;
 
-    @Column
+    @Column(name = "age")
     private Byte age;
 
-    public User() {
+    public User() { // когда работаем с сущностями, обязательно должен быть конструктор по умолчанию
 
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 
     public User(String name, String lastName, Byte age) {
@@ -59,4 +70,5 @@ public class User {
     public void setAge(Byte age) {
         this.age = age;
     }
+
 }
