@@ -12,11 +12,11 @@ public class UserServiceImpl implements UserService {
     UserDao dao;
 
     public UserServiceImpl(){
-        this.dao = new UserDaoJDBCImpl();
+        this.dao = new UserDaoHibernateImpl();
     }
 
     // [!]
-    // Первое решение не проверено, поэтому есть метод для замены dao
+    // Первое решение не проверено, поэтому есть метод для замены dao --  не совсем понял, как это связано
 //    public void setHIBERNATEImplDao() {
 //        this.dao = new UserDaoHibernateImpl();
 //    }
