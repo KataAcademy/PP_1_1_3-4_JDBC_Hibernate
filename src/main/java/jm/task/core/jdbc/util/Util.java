@@ -1,10 +1,6 @@
 package jm.task.core.jdbc.util;
 
-import com.mysql.cj.jdbc.Driver;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 public class Util {
@@ -12,14 +8,16 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/test";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
-
-    static {
+    public static Statement getConnection() {
+        Statement statement = null;
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             System.out.println("Connection succesfull");
+            statement = connection.createStatement();
 
         } catch (SQLException e) {
-            System.out.println("Connection error");;
+            System.out.println("Connection error");
         }
-    }
+        return statement;
 
+    }
 }
