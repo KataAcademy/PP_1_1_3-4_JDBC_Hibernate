@@ -31,17 +31,20 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        String SQL = "INSERT INTO User (name, lastName, age) VALUES (" + name + ", " + lastName + ", "+ age + ");" ;
+        String SQL = "INSERT INTO user (FirstName, LastName, age) VALUES ('" + name + "', '" + lastName + "', "+ age + ");" ;
         Util.getConnection(SQL);
     }
 
     public void removeUserById(long id) {
+        String SQL = "DELETE FROM Products WHERE Id = 3";
+        Util.getConnection(SQL);
 
     }
 
     public List<User> getAllUsers() {
-//        List<User> users = new ArrayList<>();
-//        String SQL = "SELECT * FROM User";
+        List<User> users = new ArrayList<>();
+       String SQL = "SELECT * FROM User";
+       ResultSet resultSet = Util.getConnection(SQL);
 //        try {
 //            ResultSet resultSet = statement.executeQuery(SQL);
 //            while (resultSet.next()){

@@ -11,11 +11,11 @@ public class Main {
         // реализуйте алгоритм здесь
         UserService userService = new UserServiceImpl( Main.createDAO());
         userService.createUsersTable();
-       // userService.saveUser("Name1", "LastName1", (byte) 20);
-       // System.out.println("");
-       // userService.saveUser("Name2", "LastName2", (byte) 25);
-       // userService.saveUser("Name3", "LastName3", (byte) 31);
-       // userService.saveUser("Name4", "LastName4", (byte) 38);
+        userService.saveUser("Name1", "LastName1", (byte) 20);
+        System.out.println("Пользователь Name1 добавлен");
+        userService.saveUser("Name2", "LastName2", (byte) 25);
+        userService.saveUser("Name3", "LastName3", (byte) 31);
+        userService.saveUser("Name4", "LastName4", (byte) 38);
 
         //userDao.removeUserById(1);
         //userDao.getAllUsers();
@@ -25,6 +25,5 @@ public class Main {
     public static UserDao createDAO(){
         UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
         return userDaoJDBC;
-
     }
 }
