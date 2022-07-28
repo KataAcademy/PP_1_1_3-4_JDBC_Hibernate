@@ -39,7 +39,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        try( Statement statement = connection.createStatement()) {
+        try ( Statement statement = connection.createStatement()) {
             statement.execute(dropUserTable);
             connection.commit();
         } catch (SQLException e) {
@@ -50,7 +50,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        try(PreparedStatement preparedStatement = connection.prepareStatement(saveUser)){
+        try ( PreparedStatement preparedStatement = connection.prepareStatement(saveUser)){
             preparedStatement.setString(1,name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
