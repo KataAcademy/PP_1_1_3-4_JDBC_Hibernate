@@ -33,8 +33,8 @@ public class Util {
     }
 
 
- private static SessionFactory sessionFactory;
-    private static SessionFactory getConnection(){
+    private static SessionFactory sessionFactory;
+    public static SessionFactory getConnection(){
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration()
@@ -49,6 +49,7 @@ public class Util {
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                System.out.println("connection ok");
             } catch(HibernateException e) {
                 e.printStackTrace();
             }
