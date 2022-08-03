@@ -1,5 +1,51 @@
 package jm.task.core.jdbc.util;
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.HibernateException;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
+import org.hibernate.service.ServiceRegistry;
+import java.sql.*;
+
+
 public class Util {
-    // реализуйте настройку соеденения с БД
+    private static final String URL = "jdbc:mysql://localhost:3306/test";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "root";
+    private static SessionFactory sessionFactory;
+
+    public static Connection createConnectionJDBC() {
+        Connection connection;
+        try {
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection.setAutoCommit(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return connection;
+    }
+
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
+                Configuration configuration = new Configuration()
+                        .setProperty(Environment.URL, URL)
+                        .setProperty(Environment.USER, USERNAME)
+                        .setProperty(Environment.PASS, PASSWORD)
+                        .setProperty(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect")
+                        .setProperty(Environment.SHOW_SQL, "true")
+                        .setProperty(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread")
+                        .addAnnotatedClass(User.class);
+                ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                        .applySettings(configuration.getProperties()).build();
+                sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+                System.out.println("connection ok");
+            } catch(HibernateException e) {
+                e.printStackTrace();
+            }
+        }
+        return sessionFactory;
+    }
 }
