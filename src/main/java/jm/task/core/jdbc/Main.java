@@ -12,16 +12,16 @@ public class Main {
 
         userService.createUsersTable();
 
-        userService.saveUser("Kirill","Olenichev", (byte) 28);
-        userService.saveUser("Sergey","Olenichev", (byte) 63);
-        userService.saveUser("Richard","Olenichev", (byte) 9);
-        userService.saveUser("Dmitry","Palcev", (byte) 27);
+        userService.saveUser("Kirill", "Olenichev", (byte) 28);
+        userService.saveUser("Sergey", "Olenichev", (byte) 63);
+        userService.saveUser("Richard", "Olenichev", (byte) 9);
+        userService.saveUser("Dmitry", "Palcev", (byte) 27);
 
         userService.removeUserById(2);
 
         List<User> userList = userService.getAllUsers();
         System.out.println();
-        for (User user:userList) {
+        for (User user : userList) {
             System.out.println(user);
         }
         userService.cleanUsersTable();
