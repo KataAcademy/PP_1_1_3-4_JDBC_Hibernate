@@ -1,11 +1,12 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
-        UserServiceImpl uService = new UserServiceImpl(); // исправила реализацию через UserDaoJDBCImpl на реализацию через UserServiceImpl
+        UserService uService = new UserServiceImpl(); // добавила полиморфизм :)
 
         // создаю таблицу
         uService.createUsersTable();
