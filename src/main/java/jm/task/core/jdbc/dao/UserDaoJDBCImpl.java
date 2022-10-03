@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    Connection connection = Util.getConnection();
+    private Connection connection = Util.getConnection();
     private String tableName = "User";
     private String createTable = "CREATE TABLE IF NOT EXISTS " + tableName +
             "(id BIGINT PRIMARY KEY AUTO_INCREMENT, " +

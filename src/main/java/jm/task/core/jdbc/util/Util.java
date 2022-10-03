@@ -16,8 +16,10 @@ public class Util {
     private static final String CONNECTION_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static Connection connection = null;
 
-    public static Connection getConnection() {
+    private Util() {
+    }
 
+    public static Connection getConnection() {
         try {
             Class.forName(CONNECTION_DRIVER).getDeclaredConstructor().newInstance();
             System.out.println("Попытка соединения к БАЗЕ ДАННЫХ..........");
