@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 public  class Util {
     // реализуйте настройку соеденения с БД
     private static final String userName ="root";
     private static final String password = "1111";
     private static final String connectURL = "jdbc:mysql://localhost:3306/users";
-    private static Connection connection;
+
+    private static Connection connection =Util.getConnection();
 
 
 
