@@ -19,7 +19,6 @@ public  class Util {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(connectURL, userName, password);
-                System.out.println("getConnection");
             } catch (ClassNotFoundException | SQLException e) {
                 System.out.println("Do not open - Exception!!!");
             }
@@ -29,7 +28,6 @@ public  class Util {
     public static void closeConnection(){
         if(connection != null) {
             try {
-                System.out.println("closeConnection");
                 connection.close();
             } catch (SQLException e) {
                 System.out.println("Do not closed - Exception!!!");
