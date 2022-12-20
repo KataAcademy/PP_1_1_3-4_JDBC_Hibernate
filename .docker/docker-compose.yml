@@ -3,11 +3,11 @@ version: "3.7"
 services:
   db:
     image: mysql
-    container_name: mysql_db
+    container_name: mysql_database
     env_file:
       - .env
     ports:
-      - "3306:3306"
+      - ${MYSQL_PORT}:${MYSQL_PORT}
     volumes:
       - ./data:/var/lib/mysql
     environment:
