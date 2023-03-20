@@ -20,7 +20,7 @@ public class Main {
         userService.saveUser(user4.getName(), user4.getLastName(), user4.getAge());
         List<User> usersList = userService.getAllUsers();
         for (User user : usersList) {
-            System.out.println(user.getName() + " " + user.getLastName() + " " + user.getAge());
+            System.out.println(user.toString());
         }
 
         userService.cleanUsersTable();
