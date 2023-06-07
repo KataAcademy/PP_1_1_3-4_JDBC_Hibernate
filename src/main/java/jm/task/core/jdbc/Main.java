@@ -1,17 +1,21 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Util util = new Util();
-        util.getConnection();
-        //  Создание таблицы User(ов)
-        // Добавление 4 User(ов) в таблицу с данными на свой выбор. После каждого добавления должен быть вывод в консоль ( User с именем – name добавлен в базу данных )
-        // Получение всех User из базы и вывод в консоль ( должен быть переопределен toString в классе User)
-        // Очистка таблицы User(ов)
-        // Удаление таблицы
+        UserServiceImpl userService = new UserServiceImpl();
+        userService.createUsersTable();
+        userService.saveUser("Andrey", "Bradobrey", (byte)22);
+        userService.saveUser("Roma", "Bystry", (byte)22);
+        userService.saveUser("Andy", "Bystha", (byte)26);
+        userService.saveUser("Kiska", "Lalala", (byte)23);
+        userService.saveUser("Oleg", "Mongol", (byte)24);
+        userService.getAllUsers();
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
     }
 }
