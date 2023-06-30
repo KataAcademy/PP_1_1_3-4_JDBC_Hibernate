@@ -1,12 +1,13 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
 public class Main {
     public static void main(String[] args) {
 
-        UserServiceImpl userService = new UserServiceImpl();
+        UserService userService = new UserServiceImpl();
         userService.createUsersTable();
 
         User user1 = new User("Петя", "Иванов", (byte) 25);
@@ -26,6 +27,5 @@ public class Main {
 
         userService.cleanUsersTable();
         userService.dropUsersTable();
-
     }
 }
