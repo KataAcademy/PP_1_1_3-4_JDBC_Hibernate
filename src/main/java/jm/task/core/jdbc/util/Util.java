@@ -1,5 +1,8 @@
 package jm.task.core.jdbc.util;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,6 +27,21 @@ public class Util {
         }
         return connection;
     }
-    //Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+    public static SessionFactory getHibernateSessionFactory() {
+        Configuration configuration = new Configuration();
+
+        configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/1_1_4_Kata?useSSL=false&serverTimezone=UTC");
+        configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
+        configuration.setProperty("hibernate.connection.username", "root");
+        configuration.setProperty("hibernate.connection.password", "1234");
+        configuration.setProperty("hibernate.current_session_context_class", "thread");
+        configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        configuration.setProperty("hibernate.show_sql", "true");
+
+        configuration.addAnnotatedClass(jm.task.core.jdbc.model.User.class);
+
+        SessionFactory sessionFactory = configuration.buildSessionFactory();
+        return sessionFactory;
+    }
 
 }
