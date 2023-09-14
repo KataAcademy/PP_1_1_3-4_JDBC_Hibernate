@@ -15,7 +15,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-        String sql = "CREATE TABLE IF NOT EXISTS User (id BIGINT, name TEXT, lastName TEXT, age TINYINT)";
+        String sql = "CREATE TABLE IF NOT EXISTS User (id BIGINT PRIMARY KEY auto_increment, name TEXT, lastName TEXT, age TINYINT)";
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = con.prepareStatement(sql);
@@ -47,12 +47,11 @@ public class UserDaoJDBCImpl implements UserDao {
             } else {
                 nextId = 0L;
             }
-            String sqlInsertUser = "INSERT INTO User (id, name, lastName, age) VALUES (?, ?, ?, ?)";
+            String sqlInsertUser = "INSERT INTO User (name, lastName, age) VALUES (?, ?, ?)";
             try (PreparedStatement insertStatement = con.prepareStatement(sqlInsertUser)) {
-                insertStatement.setLong(1, nextId);
-                insertStatement.setString(2, name);
-                insertStatement.setString(3, lastName);
-                insertStatement.setByte(4, age);
+                insertStatement.setString(1, name);
+                insertStatement.setString(2, lastName);
+                insertStatement.setByte(3, age);
                 //Отправляем данные в таблицу
 
                 insertStatement.executeUpdate();
