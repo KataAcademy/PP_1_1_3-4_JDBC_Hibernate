@@ -3,6 +3,7 @@ package jm.task.core.jdbc.model;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.StringJoiner;
 
 @Table
 public class User {
@@ -58,5 +59,9 @@ public class User {
 
     public void setAge(Byte age) {
         this.age = age;
+    }
+
+    public String toString() {
+        return getId() + ", " + getName() + ", " + getLastName() + ", " + getAge();
     }
 }
