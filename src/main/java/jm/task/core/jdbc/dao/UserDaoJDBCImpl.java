@@ -37,16 +37,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void saveUser(String name, String lastName, byte age) {
         long nextId;
         createUsersTable(); //Пробуем создать таблицу, если ее не существует
-        String sqlGetLastId = "SELECT id FROM User ORDER BY id DESC LIMIT 1"; //
-        try (Statement statement = con.createStatement();
-             ResultSet resultSet = statement.executeQuery(sqlGetLastId)) {
-            if (resultSet.next()) {
-                /*Запрашиваем последний ID из таблицы и увеличиваем его на 1,
-                если его нет, создаем первый ID*/
-                nextId = resultSet.getLong(1) + 1;
-            } else {
-                nextId = 0L;
-            }
+        try (Statement statement = con.createStatement()) {
             String sqlInsertUser = "INSERT INTO User (name, lastName, age) VALUES (?, ?, ?)";
             try (PreparedStatement insertStatement = con.prepareStatement(sqlInsertUser)) {
                 insertStatement.setString(1, name);
