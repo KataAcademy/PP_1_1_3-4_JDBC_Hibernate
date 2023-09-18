@@ -12,8 +12,8 @@ public class UserServiceImpl extends Util implements UserService {
     private final UserDao userDao;
 
     public UserServiceImpl() {
-        this.userDao = new UserDaoJDBCImpl();
-//        this.userDao = new UserDaoHibernateImpl();
+//        this.userDao = new UserDaoJDBCImpl();
+        this.userDao = new UserDaoHibernateImpl();
     }
     public void createUsersTable() {
         userDao.createUsersTable();
