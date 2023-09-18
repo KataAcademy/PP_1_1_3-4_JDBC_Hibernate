@@ -29,7 +29,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void dropUsersTable() {
         try (Statement statement = con.createStatement()) {
-            statement.executeUpdate("DROP TABLE User");
+            statement.executeUpdate("DROP TABLE IF EXISTS User");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -37,8 +37,8 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        String query = "INSERT INTO User (name, lastName, age) VALUES (?, ?, ?)";
-        try (PreparedStatement preparedStatement = con.prepareStatement(query)) {
+//        String query = "INSERT INTO User (name, lastName, age) VALUES (?, ?, ?)";
+        try (PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO User (name, lastName, age) VALUES (?, ?, ?)")) {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
@@ -60,10 +60,10 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        User user = null;
         try (Statement statement = con.createStatement()){
             ResultSet resultSet = statement.executeQuery("SELECT * FROM User");
             while (resultSet.next()) {
+                User user = new User();
                 user.setId(resultSet.getLong(1));
                 user.setName(resultSet.getString(2));
                 user.setLastName(resultSet.getString(3));
