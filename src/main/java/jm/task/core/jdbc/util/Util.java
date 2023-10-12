@@ -15,7 +15,7 @@ public class Util {
         try {
             con = DriverManager.getConnection(URLFIXED, USERNAME, PASSWORD);
         } catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
         return con;
     }
