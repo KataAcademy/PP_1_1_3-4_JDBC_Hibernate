@@ -30,10 +30,8 @@
     - Should not throw an exception if the table does not exist.
 
 3. **Clear Users Table:**
-    - Remove all contents of the Users table.
 
 4. **Add User to the Table:**
-    - Include a message printed to the console: `User with name – [name] added to the database`.
 
 5. **Delete User from the Table (by id):**
 
