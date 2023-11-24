@@ -1,6 +1,6 @@
 # Welcome
 ## Training Pre-Project: Task 1.1.2 - Working with DB and Using JDBC
-![Скриншот тестов](image/screenshot.png)
+![Скриншот тестов](image/Screenshot.png)
 ---
 
 ## Setup
