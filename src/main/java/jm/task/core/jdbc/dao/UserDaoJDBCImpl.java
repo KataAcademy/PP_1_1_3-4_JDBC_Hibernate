@@ -21,10 +21,8 @@ public class UserDaoJDBCImpl implements UserDao {
     public void createUsersTable() {
 
         try {
-
-            String sqlCommand = "CREATE TABLE IF NOT EXISTS Users (id INT PRIMARY KEY auto_increment, name VARCHAR(255), lastName VARCHAR(255), age INT)";
+            String sqlCommand = "CREATE TABLE IF NOT EXISTS Users (id INT PRIMARY KEY auto_increment, name VARCHAR(255), lastName VARCHAR(255), age TINYINT)";
             statement.executeUpdate(sqlCommand);
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -35,7 +33,6 @@ public class UserDaoJDBCImpl implements UserDao {
         try  {
             String sqlCommand = "DROP TABLE IF EXISTS Users";
             statement.executeUpdate(sqlCommand);
-
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
