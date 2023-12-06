@@ -19,7 +19,6 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-
         try {
             String sqlCommand = "CREATE TABLE IF NOT EXISTS Users (id INT PRIMARY KEY auto_increment, name VARCHAR(255), lastName VARCHAR(255), age TINYINT)";
             statement.executeUpdate(sqlCommand);
@@ -29,7 +28,6 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-
         try  {
             String sqlCommand = "DROP TABLE IF EXISTS Users";
             statement.executeUpdate(sqlCommand);
