@@ -13,11 +13,13 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     Connection connection = Util.getConnection();
+
     public void createUsersTable() {
 
 
        try (Statement statement = connection.createStatement()){
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users (" +
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users" +
+                    " (" +
 
                     "  id INT NOT NULL AUTO_INCREMENT," +
 
@@ -28,6 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     "  age INT," +
 
                     "  PRIMARY KEY (id));");
+
 
        }catch (SQLException e){
            e.printStackTrace();
