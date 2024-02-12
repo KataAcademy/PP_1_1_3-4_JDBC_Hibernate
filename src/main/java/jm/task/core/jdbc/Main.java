@@ -5,7 +5,9 @@ import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 public class Main {
     public static void main(String[] args) {
 
-    //    UserDaoJDBCImpl userDaoJDBC =new UserDaoJDBCImpl();
+
+
+    //   UserDaoJDBCImpl userDaoJDBC =new UserDaoJDBCImpl();
 
       //  userDaoJDBC.dropUsersTable();
       //  userDaoJDBC.createUsersTable();
@@ -20,8 +22,8 @@ public class Main {
 
         UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl();
         userDaoHibernate.dropUsersTable();
-       // userDaoHibernate.createUsersTable();
-      //  userDaoHibernate.saveUser("Alex", "Ivanov", (byte) 23);
+        userDaoHibernate.createUsersTable();
+        userDaoHibernate.saveUser("Alex", "Ivanov", (byte) 23);
       //  userDaoHibernate.saveUser("Anton", "Petrov", (byte) 35);
       //  userDaoHibernate.saveUser("Elena", "Gromova", (byte) 35);
       //  userDaoHibernate.saveUser("Sergey", "Kim", (byte) 42);

@@ -3,7 +3,6 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -66,7 +65,10 @@ public class UserDaoHibernateImpl implements UserDao {
 
 
             transaction.commit();
-
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
 
         }
     }
@@ -75,15 +77,13 @@ public class UserDaoHibernateImpl implements UserDao {
     public void saveUser(String name, String lastName, byte age) {
 
         try (Session session =  sessionFactory.openSession()) {
-
+        User user = new User();
             transaction = session.beginTransaction();
 
-            session.persist(new User(name, lastName, age));
-            session.getTransaction().commit();
+            session.persist(user);
+           transaction.commit();
 
-        } catch (HibernateException e) {
-            e.printStackTrace();
-
+        } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -99,6 +99,10 @@ public class UserDaoHibernateImpl implements UserDao {
 
             session.getTransaction().commit();
 
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
 
         }
     }
@@ -111,10 +115,16 @@ public class UserDaoHibernateImpl implements UserDao {
                 List<User> list = session.createNativeQuery("FROM user ", User.class).getResultList();
 
                 transaction.commit();
-                // session.getTransaction().commit();
-
                 return list;
+            } catch (Exception e) {
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+
+
             }
+
+            return null;
         }
 
 
