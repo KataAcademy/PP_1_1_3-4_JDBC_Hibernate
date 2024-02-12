@@ -49,8 +49,8 @@ public class Util {
                     .setProperty("hibernate.connection.url", HOST)
                     .setProperty("hibernate.connection.username", LOGIN)
                     .setProperty("hibernate.connection.password", PASSWORD2)
-                    .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect")
-                    .setProperty("Environment.HBM2DDL_AUTO", "")
+                    .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect")
+                    .setProperty("Environment.HBM2DDL_AUTO", "create-drop")
 
                     .addAnnotatedClass(User.class);
 

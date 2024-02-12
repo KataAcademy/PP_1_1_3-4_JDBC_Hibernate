@@ -41,9 +41,9 @@ public class UserDaoHibernateImpl implements UserDao {
                     "  PRIMARY KEY (id));";
 
 
-            session.createNativeQuery(sql, User.class);
+            session.createNativeQuery(sql, User.class).executeUpdate();
 
-            //   session.persist(user);
+
             transaction.commit();
 
 
@@ -75,9 +75,9 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-
+        User user = new User(name,lastName,age);
         try (Session session =  sessionFactory.openSession()) {
-        User user = new User();
+
             transaction = session.beginTransaction();
 
             session.persist(user);
