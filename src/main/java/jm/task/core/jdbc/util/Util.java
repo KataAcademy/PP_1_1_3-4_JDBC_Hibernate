@@ -36,23 +36,18 @@ public class Util {
     }
 
 
-//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
- //  private static final String HOST = "jdbc:mysql://localhost:3306/dbtest?useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
- //   private static final String LOG = "root";
-   // private static final String PAS = "root";
 
-
-    public static SessionFactory sessionFactory = null;
+    public static SessionFactory sessionFactory ;
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
-            try {
-                Configuration configuration = new Configuration();
+        try {
+            Configuration configuration = new Configuration();
 
-                // Hibernate settings equivalent to hibernate.cfg.xml's properties
+
                 Properties settings = new Properties();
                 settings.put(Environment.JAKARTA_JDBC_DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.JAKARTA_JDBC_URL, "jdbc:mysql://localhost:3306/detest?useSSL=false&allowMultiQueries=true&serverTimezone=UTC");
+                settings.put(Environment.JAKARTA_JDBC_URL, "dbc:mysql://localhost:3306/users");
                 settings.put(Environment.JAKARTA_JDBC_USER, "root");
                 settings.put(Environment.JAKARTA_JDBC_PASSWORD, "root");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
@@ -61,19 +56,19 @@ public class Util {
 
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-                settings.put(Environment.HBM2DDL_AUTO, "");
+                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
-                configuration.setProperties(settings);
+                 configuration.setProperties(settings);
 
-                configuration.addAnnotatedClass(User.class);
+                 configuration.addAnnotatedClass(User.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
 
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-                sessionFactory.close();
+             //   sessionFactory.close();
             } catch (Exception e) {
-                e.printStackTrace();
+               e.printStackTrace();
             }
         }
         return sessionFactory;

@@ -40,9 +40,9 @@ public class UserDaoHibernateImpl implements UserDao {
                     "  age INT NOT NULL," +
 
                     "  PRIMARY KEY (id));";
-            session.createNativeQuery
 
-                    (sql, User.class).executeUpdate();
+
+            session.createNativeQuery(sql, User.class);
 
             //   session.persist(user);
             transaction.commit();
@@ -59,13 +59,13 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session =  sessionFactory.openSession()) {
             transaction = session.beginTransaction();
 
-            session.createNativeQuery("DROP TABLE IF EXISTS users", User.class).executeUpdate();
+            session.createNativeQuery("DROP TABLE IF EXISTS users", User.class);
 
 
-            session.getTransaction().commit();
+            transaction.commit();
 
 
         }
@@ -74,7 +74,7 @@ public class UserDaoHibernateImpl implements UserDao {
     @Override
     public void saveUser(String name, String lastName, byte age) {
 
-        try (Session session = sessionFactory.openSession()) {
+        try (Session session =  sessionFactory.openSession()) {
 
             transaction = session.beginTransaction();
 
@@ -95,6 +95,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
 
             session.remove(session.get(User.class, id));
+            
 
             session.getTransaction().commit();
 
@@ -104,10 +105,10 @@ public class UserDaoHibernateImpl implements UserDao {
         @Override
         public List<User> getAllUsers () {
 
-            try (Session session = sessionFactory.openSession()) {
+            try (Session session =  sessionFactory.openSession()) {
                 transaction = session.beginTransaction();
 
-                List<User> list = session.createNativeQuery("FROM users ", User.class).getResultList();
+                List<User> list = session.createNativeQuery("FROM user ", User.class).getResultList();
 
                 transaction.commit();
                 // session.getTransaction().commit();
@@ -119,13 +120,15 @@ public class UserDaoHibernateImpl implements UserDao {
 
         @Override
         public void cleanUsersTable () {
-            try (Session session = sessionFactory.openSession()) {
+            try (Session session =  sessionFactory.openSession()) {
 
                 transaction = session.beginTransaction();
 
                 User user = new User();
-                session.remove(user);
                 session.persist(user);
+
+                session.remove(user);
+
 
                 session.getTransaction().commit();
 

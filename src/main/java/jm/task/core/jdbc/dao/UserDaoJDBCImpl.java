@@ -18,7 +18,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
 
        try (Statement statement = connection.createStatement()){
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users" +
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS " +
                     " (" +
 
                     "  id INT NOT NULL AUTO_INCREMENT," +
@@ -42,7 +42,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
        try (Statement statement = connection.createStatement()){
 
-        statement.executeUpdate("DROP TABLE IF EXISTS users" );
+        statement.executeUpdate("DROP TABLE IF EXISTS " );
 
     } catch (SQLException e) {
        throw new RuntimeException ("Error dropping users",e);
@@ -68,7 +68,7 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        String removeID = " DELETE  FROM users where id=? ";
+        String removeID = " DELETE  FROM  where id=? ";
 
         try ( PreparedStatement preparedStatement = connection.prepareStatement(removeID )){
             preparedStatement.setLong(1,  id);
@@ -83,7 +83,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         User user = new User();
         List <User> userList = new ArrayList<>();
-        String getAll = "SELECT * FROM users";
+        String getAll = "SELECT * FROM ";
 
 
        try ( Statement statement= connection.createStatement();
@@ -110,7 +110,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void cleanUsersTable() {
       //  String cleanTable = "DELETE FROM users";
        try ( Statement statement = connection.createStatement()) {
-            statement.executeUpdate("TRUNCATE TABLE users");
+            statement.executeUpdate("TRUNCATE TABLE ");
         } catch (SQLException e){
            throw  new RuntimeException("Error cleaning table", e);
        }

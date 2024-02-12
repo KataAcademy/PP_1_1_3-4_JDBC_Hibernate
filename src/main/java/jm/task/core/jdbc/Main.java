@@ -19,12 +19,12 @@ public class Main {
 
 
         UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl();
-        //userDaoHibernate.dropUsersTable();
-        userDaoHibernate.createUsersTable();
-        userDaoHibernate.saveUser("Alex", "Ivanov", (byte) 23);
-        userDaoHibernate.saveUser("Anton", "Petrov", (byte) 35);
-        userDaoHibernate.saveUser("Elena", "Gromova", (byte) 35);
-        userDaoHibernate.saveUser("Sergey", "Kim", (byte) 42);
+        userDaoHibernate.dropUsersTable();
+       // userDaoHibernate.createUsersTable();
+      //  userDaoHibernate.saveUser("Alex", "Ivanov", (byte) 23);
+      //  userDaoHibernate.saveUser("Anton", "Petrov", (byte) 35);
+      //  userDaoHibernate.saveUser("Elena", "Gromova", (byte) 35);
+      //  userDaoHibernate.saveUser("Sergey", "Kim", (byte) 42);
     //    System.out.println(userDaoHibernate.getAllUsers().toString());
 
 
