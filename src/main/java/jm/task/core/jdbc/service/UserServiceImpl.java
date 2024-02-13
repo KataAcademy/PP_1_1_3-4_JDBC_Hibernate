@@ -7,11 +7,11 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService  {
 
-    //UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
+  //  UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
    UserDaoHibernateImpl userDaoHibernate =new UserDaoHibernateImpl();
     public void createUsersTable() {
 
-      //  userDaoJDBC.createUsersTable();
+    //   userDaoJDBC.createUsersTable();
         userDaoHibernate.createUsersTable();
 
         System.out.println("Таблица создана");
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService  {
 
     public void dropUsersTable() {
 
-      //  userDaoJDBC.dropUsersTable();
+   //     userDaoJDBC.dropUsersTable();
         userDaoHibernate.dropUsersTable();
     }
 
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService  {
     }
 
     public List<User> getAllUsers() {
-           // System.out.println(userDaoJDBC.getAllUsers().toString());
+      //   System.out.println(userDaoJDBC.getAllUsers().toString());
             System.out.println(userDaoHibernate.getAllUsers().toString());
             return userDaoHibernate.getAllUsers();
        // return    userDaoJDBC.getAllUsers();

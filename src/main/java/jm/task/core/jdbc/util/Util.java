@@ -10,7 +10,6 @@ import org.hibernate.service.ServiceRegistry;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 public class Util {
 
     private static final String URL = "jdbc:mysql://localhost/users";
@@ -18,7 +17,7 @@ public class Util {
     private static final String PASSWORD = "root";
 
 
-    public static Connection getConnection() {
+    public static Connection getConnection()  {
         Connection connection = null;
         try {
 
@@ -49,8 +48,9 @@ public class Util {
                     .setProperty("hibernate.connection.url", HOST)
                     .setProperty("hibernate.connection.username", LOGIN)
                     .setProperty("hibernate.connection.password", PASSWORD2)
+                    .setProperty ("current_session_context_class", "true")
                     .setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect")
-                    .setProperty("Environment.HBM2DDL_AUTO", "create-drop")
+                    .setProperty("Environment.HBM2DDL_AUTO", " ")
 
                     .addAnnotatedClass(User.class);
 

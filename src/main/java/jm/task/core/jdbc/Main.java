@@ -10,30 +10,30 @@ public class Main {
     //   UserDaoJDBCImpl userDaoJDBC =new UserDaoJDBCImpl();
 
       //  userDaoJDBC.dropUsersTable();
-      //  userDaoJDBC.createUsersTable();
+     //   userDaoJDBC.createUsersTable();
      //   userDaoJDBC.saveUser("Alex", "Ivanov", (byte) 23);
-    //    userDaoJDBC.saveUser("Anton", "Petrov", (byte) 35);
+     //   userDaoJDBC.saveUser("Anton", "Petrov", (byte) 35);
      //   userDaoJDBC.saveUser("Elena", "Gromova", (byte) 35);
      //   userDaoJDBC.saveUser("Sergey", "Kim", (byte) 42);
-     //   System.out.println(userDaoJDBC.getAllUsers().toString());
-       // userDaoJDBC.cleanUsersTable();
+    //    System.out.println(userDaoJDBC.getAllUsers().toString());
+      //  userDaoJDBC.cleanUsersTable();
 
 
 
         UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl();
         userDaoHibernate.dropUsersTable();
         userDaoHibernate.createUsersTable();
-        userDaoHibernate.saveUser("Alex", "Ivanov", (byte) 23);
-      //  userDaoHibernate.saveUser("Anton", "Petrov", (byte) 35);
-      //  userDaoHibernate.saveUser("Elena", "Gromova", (byte) 35);
+         userDaoHibernate.saveUser("Alex", "Ivanov", (byte) 23);
+       // userDaoHibernate.saveUser("Anton", "Petrov", (byte) 35);
+       // userDaoHibernate.saveUser("Elena", "Gromova", (byte) 35);
       //  userDaoHibernate.saveUser("Sergey", "Kim", (byte) 42);
     //    System.out.println(userDaoHibernate.getAllUsers().toString());
 
 
 
 
-    //    UserServiceImpl userService =new UserServiceImpl();
-   //     userService.createUsersTable();
+  //     UserServiceImpl userService =new UserServiceImpl();
+     //   userService.createUsersTable();
 
    //     userService.saveUser("Alex", "Ivanov", (byte) 23);
    //     userService.saveUser("Anton", "Petrov", (byte) 35);
@@ -42,7 +42,7 @@ public class Main {
 
   //      userService.getAllUsers();
    //     userService.cleanUsersTable();
-   //     userService.dropUsersTable();
+      //  userService.dropUsersTable();
 
     }
 }

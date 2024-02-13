@@ -18,7 +18,7 @@ public class UserDaoHibernateImpl implements UserDao {
     SessionFactory sessionFactory = Util.getSessionFactory();
     Transaction transaction = null;
 
-    //    User user;
+
 
     @Override
     public void createUsersTable() {
@@ -27,18 +27,18 @@ public class UserDaoHibernateImpl implements UserDao {
         try (Session session = sessionFactory.openSession()) {
             transaction = session.beginTransaction();
 
-            String sql = "CREATE TABLE IF NOT EXISTS users " +
-                    " (" +
+            String sql = ("CREATE TABLE IF NOT EXISTS users " +
 
-                    "  id INT NOT NULL AUTO_INCREMENT," +
+                    "  ( id INT NOT NULL AUTO_INCREMENT," +
 
-                    "  name VARCHAR(50) NOT NULL, " +
+                    "  name VARCHAR(50)," +
 
-                    "  lastName VARCHAR(50) NOT NULL," +
+                    "  lastName VARCHAR(50)," +
 
-                    "  age INT NOT NULL," +
+                    "  age INT," +
 
-                    "  PRIMARY KEY (id));";
+                    "  PRIMARY KEY (id));");
+
 
 
             session.createNativeQuery(sql, User.class).executeUpdate();
@@ -58,10 +58,11 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
+    //   User user = new User();
         try (Session session =  sessionFactory.openSession()) {
             transaction = session.beginTransaction();
 
-            session.createNativeQuery("DROP TABLE IF EXISTS users", User.class);
+            session.createNativeQuery("DROP TABLE IF EXISTS users", User.class).executeUpdate();
 
 
             transaction.commit();
@@ -75,13 +76,20 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void saveUser(String name, String lastName, byte age) {
-        User user = new User(name,lastName,age);
+
+        User user = new User();
+
         try (Session session =  sessionFactory.openSession()) {
 
             transaction = session.beginTransaction();
 
+           user.setName(name);
+           user.setLastName(lastName);
+           user.setAge(age);
+
             session.persist(user);
-           transaction.commit();
+
+            session.getTransaction().commit();
 
         } catch (Exception e) {
             if (transaction != null) {
@@ -112,7 +120,7 @@ public class UserDaoHibernateImpl implements UserDao {
             try (Session session =  sessionFactory.openSession()) {
                 transaction = session.beginTransaction();
 
-                List<User> list = session.createNativeQuery("FROM user ", User.class).getResultList();
+                List<User> list = session.createNativeQuery("FROM users ", User.class).getResultList();
 
                 transaction.commit();
                 return list;
