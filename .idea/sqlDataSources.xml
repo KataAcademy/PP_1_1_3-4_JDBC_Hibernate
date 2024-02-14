@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="299e8e79-26aa-4f54-b199-09f21c178180" name="users Mapping">
+      <data-sources db="52240552-3fd6-464c-9263-32bc4e95bb4a" ddl="1c315b95-eacb-45e9-a4e8-cf4b51f0c38c" />
+      <scope>
+        <node kind="schema" qname="users" />
+      </scope>
+    </mapping>
+    <mapping uuid="4708ebf8-1808-4e83-83bb-6fbbbda6aa2d" name="users@localhost Mapping">
+      <data-sources db="f90f3e7f-baa1-4878-ae63-30ced421267d" ddl="929c0849-2018-4fc0-a813-df3182344a5a" />
+      <scope>
+        <node kind="schema" qname="users" />
+      </scope>
+    </mapping>
+  </component>
+</project>
