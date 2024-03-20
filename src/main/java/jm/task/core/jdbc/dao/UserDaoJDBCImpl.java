@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    Connection connection = Util.getConnection();
+    Connection connection = Util.MySql.getConnection();
     public UserDaoJDBCImpl() {
 
     }
