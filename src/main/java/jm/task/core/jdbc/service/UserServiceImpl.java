@@ -5,6 +5,9 @@ import jm.task.core.jdbc.model.User;
 
 import java.util.List;
 
+import static java.util.logging.Logger.getLogger;
+import java.util.logging.Logger;
+
 public class UserServiceImpl implements UserService {
     UserDaoJDBCImpl dao = new UserDaoJDBCImpl();
     public void createUsersTable() {
@@ -17,7 +20,8 @@ public class UserServiceImpl implements UserService {
 
     public void saveUser(String name, String lastName, byte age) {
         dao.saveUser(name, lastName, age);
-        System.out.printf("User с именем — %s добавлен в базу данных \n", name);
+        Logger logger = getLogger(User.class.getName());
+        logger.info("User с именем — " + name + " добавлен в базу данных");
     }
 
     public void removeUserById(long id) {
