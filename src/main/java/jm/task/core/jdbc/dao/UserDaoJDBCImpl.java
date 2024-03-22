@@ -6,12 +6,13 @@ import jm.task.core.jdbc.util.Util;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserDaoJDBCImpl implements UserDao {
-    Connection connection = Util.getConnection();
-    public UserDaoJDBCImpl() {
+    private final Connection connection = Util.getConnection();
+    private static final Logger logger = Logger.getLogger(UserDaoJDBCImpl.class.getName());
 
-    }
 
     public void createUsersTable() {
         String createTableSQL = "CREATE TABLE IF NOT EXISTS User ("
@@ -23,9 +24,9 @@ public class UserDaoJDBCImpl implements UserDao {
 
         try (Statement statement = connection.createStatement()) {
             statement.execute(createTableSQL);
+            logger.info("Таблица пользователей создана успешно");
         } catch (SQLException e) {
-            System.out.println("Неудалось создать таблицу \n");
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Неудалось создать таблицу \n", e);
         }
     }
 
@@ -35,8 +36,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement statement = connection.createStatement()) {
             statement.execute(createTableSQL);
         } catch (SQLException e) {
-            System.out.println("Неудалось удалить таблицу \n");
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Неудалось удалить таблицу \n", e);
         }
     }
 
@@ -49,8 +49,8 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setInt(3, age);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.printf("Неудалось добавить User'a с именем %s \n", name);
-            e.printStackTrace();
+            String message = String.format("User с именем — %s не добавлен в базу данных", name);
+            logger.log(Level.SEVERE, message, e);
         }
     }
 
@@ -61,18 +61,17 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.printf("Неудаось удалить User'a с id - %d \n", id);
-            e.printStackTrace();
+            String message = String.format("Неудаось удалить User'a с id - %d", id);
+            logger.log(Level.SEVERE, message, e);
         }
     }
 
-    //TODO: Перенести метод в service и только оттуда его вызывать
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            String SQL = "SELECT * FROM User";
-            ResultSet resultSet =  statement.executeQuery(SQL);
+        String selectSQL = "SELECT * FROM User";
+
+        try(Statement statement = connection.createStatement()) {
+            ResultSet resultSet =  statement.executeQuery(selectSQL);
 
 
             while (resultSet.next()){
@@ -86,8 +85,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 users.add(user);
             }
         } catch (SQLException e) {
-            System.out.println("Неудалось получить всех User'ов \n");
-            //throw new RuntimeException(e);
+            logger.info("Неудалось получить всех User'ов \n");
         }
         return users;
     }
@@ -98,8 +96,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Statement statement = connection.createStatement()) {
             statement.execute(truncateSQL);
         } catch (SQLException e) {
-            System.out.println("Неудалось очистить таблицу \n");
-            e.printStackTrace();
+            logger.log(Level.SEVERE, "Ошибка при очистке таблицы", e);
         }
     }
 }

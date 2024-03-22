@@ -21,7 +21,8 @@ public class UserServiceImpl implements UserService {
     public void saveUser(String name, String lastName, byte age) {
         dao.saveUser(name, lastName, age);
         Logger logger = getLogger(User.class.getName());
-        logger.info("User с именем — " + name + " добавлен в базу данных");
+        String message = String.format("User с именем — %s добавлен в базу данных", name);
+        logger.info(message);
     }
 
     public void removeUserById(long id) {
