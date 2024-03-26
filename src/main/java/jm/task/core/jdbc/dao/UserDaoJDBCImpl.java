@@ -21,10 +21,8 @@ public class UserDaoJDBCImpl implements UserDao {
                     " lastName VARCHAR (50), age INT)";
 
             statement.executeUpdate(SQL);
-            System.out.println("Table successfully created...");
         } catch (SQLException e) {
-            System.out.println("таблица не создана");
-            ;
+            e.printStackTrace();
         }
     }
 
@@ -52,7 +50,7 @@ public class UserDaoJDBCImpl implements UserDao {
             System.out.printf("User с именем — %s добавлен в базу данных\n", name);
 
         } catch (SQLException e) {
-            System.out.println("Error save User");
+            e.printStackTrace();
         }
     }
 
@@ -63,7 +61,7 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -81,7 +79,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 users.add(user);
             }
         } catch (SQLException e) {
-            System.out.println("ERROR getAllUser");
+            e.printStackTrace();
         }
         return users;
     }
