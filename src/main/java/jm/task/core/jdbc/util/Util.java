@@ -16,13 +16,7 @@ public class Util {
     public static final String URL = "jdbc:mysql://localhost:3306/my_db";
     public static final String USERNAME = "bestuser";
     public static final String PASS = "bestuser";
-
-
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USERNAME, PASS);
-    }
-
-    private static SessionFactory sessionFactory;
+    public static SessionFactory sessionFactory = getSessionFactory();
 
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
@@ -55,5 +49,13 @@ public class Util {
             }
         }
         return sessionFactory;
+    }
+
+    public static Connection getConnection() {
+        try {
+            return DriverManager.getConnection(URL, USERNAME, PASS);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
